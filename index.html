@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Allaph Andersonn — Gerente de TI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16212B;
+    --ink-soft:#3C4A56;
+    --paper:#F5F2EC;
+    --paper-raised:#FFFFFF;
+    --line:#D9D3C6;
+    --sage:#3F6E63;
+    --sage-dim:#EAEFEC;
+    --gold:#A9834F;
+    --radius:2px;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EDE9E1;
+      --ink-soft:#B9C2C6;
+      --paper:#12181C;
+      --paper-raised:#1A2126;
+      --line:#2B343A;
+      --sage:#7DAE9F;
+      --sage-dim:#1D2A26;
+      --gold:#C9A468;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EDE9E1;
+    --ink-soft:#B9C2C6;
+    --paper:#12181C;
+    --paper-raised:#1A2126;
+    --line:#2B343A;
+    --sage:#7DAE9F;
+    --sage-dim:#1D2A26;
+    --gold:#C9A468;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top: calc(env(safe-area-inset-top,0px) + 20px);}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Lora', Georgia, serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:var(--sage);}
+  .wrap{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    max-width:1180px;
+    margin:0 auto;
+    min-height:100vh;
+  }
+  /* ---------- Sidebar ---------- */
+  .side{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    padding: calc(env(safe-area-inset-top,0px) + 56px) 40px 40px 8px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-right:1px solid var(--line);
+  }
+  .side-top .mark{
+    width:52px;height:52px;
+    border:1px solid var(--ink);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Lora',serif;
+    font-size:20px;
+    letter-spacing:0.02em;
+    margin-bottom:28px;
+  }
+  .side-top h1{
+    font-size:1.5rem;
+    line-height:1.25;
+    letter-spacing:-0.01em;
+  }
+  .side-top .role{
+    margin-top:10px;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    line-height:1.5;
+    max-width:210px;
+  }
+  .side-top .loc{
+    margin-top:18px;
+    font-size:0.82rem;
+    color:var(--sage);
+    font-weight:500;
+  }
+  nav.sidenav{
+    margin-top:44px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  nav.sidenav a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    font-size:0.86rem;
+    padding:8px 0;
+    border-bottom:1px solid transparent;
+    width:fit-content;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.sidenav a:hover{ color:var(--ink); border-color:var(--line); }
+  .side-bottom{
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .side-bottom a{ color:var(--ink); text-decoration:none; }
+  .side-bottom a:hover{ color:var(--sage); }
+
+  /* ---------- Main ---------- */
+  main{
+    padding: calc(env(safe-area-inset-top,0px) + 64px) 48px 100px 56px;
+    max-width: 760px;
+  }
+  section{ margin-bottom:76px; scroll-margin-top:32px; }
+  .eyebrow-line{
+    display:flex;align-items:baseline;gap:14px;
+    margin-bottom:22px;
+  }
+  .eyebrow-line .num{
+    font-family:'Lora',serif;
+    font-style:italic;
+    color:var(--sage);
+    font-size:0.95rem;
+  }
+  .eyebrow-line h2{ font-size:1.5rem; }
+  .lede{
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:62ch;
+  }
+  .lede em{ font-style:italic; color:var(--ink); }
+
+  /* Competências */
+  .comp-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .comp-cell{
+    background:var(--paper-raised);
+    padding:22px 24px;
+  }
+  .comp-cell h3{
+    font-size:0.98rem;
+    margin-bottom:8px;
+  }
+  .comp-cell p{
+    margin:0;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+  }
+
+  /* Experiência timeline */
+  .timeline{
+    position:relative;
+    padding-left:28px;
+    border-left:1px solid var(--line);
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:40px;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-33px;
+    top:5px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--sage);
+  }
+  .tl-item.current::before{ background:var(--sage); }
+  .tl-date{
+    font-size:0.8rem;
+    color:var(--gold);
+    font-weight:500;
+    margin-bottom:4px;
+  }
+  .tl-role{
+    font-family:'Lora',serif;
+    font-weight:600;
+    font-size:1.08rem;
+  }
+  .tl-org{
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    margin-top:2px;
+    margin-bottom:10px;
+  }
+  .tl-item ul{
+    margin:0;
+    padding-left:18px;
+    font-size:0.94rem;
+    color:var(--ink-soft);
+  }
+  .tl-item li{ margin-bottom:6px; }
+
+  /* Formação */
+  .edu-item{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .edu-item:last-child{ border-bottom:1px solid var(--line); }
+  .edu-item h3{ font-size:1rem; }
+  .edu-item .edu-org{ color:var(--ink-soft); font-size:0.88rem; margin-top:3px; }
+  .edu-item .edu-when{
+    font-size:0.8rem;
+    color:var(--gold);
+    white-space:nowrap;
+    text-align:right;
+    padding-top:2px;
+  }
+
+  /* Contato */
+  .contact-box{
+    background:var(--sage-dim);
+    border:1px solid var(--line);
+    padding:34px 36px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .contact-box h2{ font-size:1.4rem; margin-bottom:6px; }
+  .contact-box p{ color:var(--ink-soft); margin:0 0 4px 0; max-width:48ch; }
+  .contact-links{
+    display:flex; flex-wrap:wrap; gap:10px 28px;
+    margin-top:8px;
+  }
+  .contact-links a{
+    text-decoration:none;
+    color:var(--ink);
+    font-size:0.92rem;
+    border-bottom:1px solid var(--sage);
+    padding-bottom:1px;
+  }
+
+  footer{
+    padding:28px 56px 40px;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    max-width:760px;
+  }
+
+  /* Mobile nav toggle */
+  .mobile-bar{ display:none; }
+
+  @media (max-width: 880px){
+    .wrap{ grid-template-columns:1fr; }
+    .side{
+      position:relative;
+      height:auto;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      padding: calc(env(safe-area-inset-top,0px) + 28px) 24px 24px 24px;
+    }
+    nav.sidenav{
+      flex-direction:row;
+      flex-wrap:wrap;
+      gap:4px 18px;
+      margin-top:24px;
+    }
+    .side-bottom{ margin-top:24px; }
+    main{ padding: 48px 24px 80px; max-width:none; }
+    .comp-grid{ grid-template-columns:1fr; }
+    footer{ padding:24px 24px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <aside class="side">
+    <div class="side-top">
+      <div class="mark">AA</div>
+      <h1>Allaph<br>Andersonn</h1>
+      <p class="role">Gerente de TI — Gestão de Projetos &amp; Sistemas de Saúde</p>
+      <p class="loc">Maceió, AL</p>
+
+      <nav class="sidenav">
+        <a href="#resumo">Resumo</a>
+        <a href="#competencias">Competências</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+
+    <div class="side-bottom">
+      <a href="tel:+5582999920972">(82) 99992-0972</a>
+      <a href="mailto:allaph_anderson@hotmail.com">allaph_anderson@hotmail.com</a>
+      <a href="https://linkedin.com/in/allaphandersonn" target="_blank" rel="noopener">linkedin.com/in/allaphandersonn</a>
+    </div>
+  </aside>
+
+  <main>
+
+    <section id="resumo">
+      <div class="eyebrow-line"><span class="num">01</span><h2>Resumo profissional</h2></div>
+      <p class="lede">
+        Profissional de TI e Gestão com ampla experiência na liderança de equipes multidisciplinares,
+        governança de processos, implantação de sistemas ERP/saúde e aplicação de metodologias ágeis
+        (Scrum/Kanban). <em>Expertise no ecossistema de saúde digital (WSaúde)</em>, com domínio operacional
+        sobre faturamento de guias de planos de saúde, agendamentos, recepção, prontuários, financeiro de
+        clínicas e relacionamento continuado com médicos e pacientes. Histórico comprovado na ponte entre
+        TI e áreas de negócio, otimizando fluxos de atendimento, garantindo estabilidade de infraestrutura
+        e liderando projetos de transformação digital.
+      </p>
+    </section>
+
+    <section id="competencias">
+      <div class="eyebrow-line"><span class="num">02</span><h2>Principais competências</h2></div>
+      <div class="comp-grid">
+        <div class="comp-cell">
+          <h3>Gestão de TI &amp; Sistemas de Saúde</h3>
+          <p>Implantação e parametrização de ERPs de saúde (WSaúde), gestão de guias de convênios, agendamentos e regras financeiras de clínicas.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>Gestão de Projetos &amp; Processos</h3>
+          <p>Metodologias ágeis (Scrum, Kanban), governança de TI, mapeamento de processos e gestão de mudanças.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>Liderança &amp; Operações</h3>
+          <p>Gestão de equipes multidisciplinares, capacitação e suporte a corpo médico e administrativo, resolução de conflitos.</p>
+        </div>
+        <div class="comp-cell">
+          <h3>Suporte &amp; Ferramentas</h3>
+          <p>Infraestrutura, gestão de chamados, Jira, Confluence, Trello, Asana, Metabase (BI), Notion, TeamViewer e AnyDesk.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="eyebrow-line"><span class="num">03</span><h2>Experiência profissional</h2></div>
+      <div class="timeline">
+
+        <div class="tl-item current">
+          <div class="tl-date">Nov/2024 — Atual</div>
+          <div class="tl-role">Consultor de Gestão de TI &amp; Projetos Digitais</div>
+          <div class="tl-org">Projetos Autônomos / Contratos de Consultoria</div>
+          <ul>
+            <li>Consultorias estratégicas de curto prazo voltadas para gestão de TI, otimização de fluxos operacionais e estruturação de projetos digitais.</li>
+            <li>Mapeamento de necessidades técnicas, melhoria de processos internos e suporte na escolha e implementação de soluções de tecnologia.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Set/2022 — Nov/2024</div>
+          <div class="tl-role">Gerente de Projetos &amp; Especialista em Sistemas</div>
+          <div class="tl-org">Wic Soluções (WLC)</div>
+          <ul>
+            <li>Gestão e suporte do sistema WSaúde, otimizando fluxos operacionais de clínicas: agendamentos, remarcações, recepção, faturamento de guias e rotinas financeiras.</li>
+            <li>Intermediação entre tecnologia, corpo médico, colaboradores e gestão administrativa das clínicas clientes.</li>
+            <li>Liderança de times de desenvolvimento e implantação com Scrum/Kanban, garantindo entregas no prazo e dentro do escopo.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Mar/2018 — Ago/2022</div>
+          <div class="tl-role">Analista de Suporte Técnico &amp; Implantação</div>
+          <div class="tl-org">Computek</div>
+          <ul>
+            <li>Condução de reuniões com clientes para alinhamento e implantação de sistemas de gestão ERP.</li>
+            <li>Capacitação e treinamento presencial e remoto das equipes dos clientes.</li>
+            <li>Suporte técnico de nível avançado, garantindo alta disponibilidade dos sistemas e resolução rápida de incidentes.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Mar/2017 — Mar/2018</div>
+          <div class="tl-role">Estagiário de Suporte Técnico</div>
+          <div class="tl-org">Receita Federal — Estágio de 1 ano</div>
+          <ul>
+            <li>Suporte técnico de TI em ambiente de órgão público federal, primeiro contato profissional com infraestrutura e atendimento a usuários.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Jan/2012 — Mar/2017</div>
+          <div class="tl-role">Gerente Administrativo</div>
+          <div class="tl-org">Mania da Moda</div>
+          <ul>
+            <li>Gestão e liderança direta de equipes operacionais de até 15 colaboradores.</li>
+            <li>Capacitação contínua em atendimento ao cliente, mediação de conflitos e otimização de rotinas internas.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="formacao">
+      <div class="eyebrow-line"><span class="num">04</span><h2>Formação &amp; certificações</h2></div>
+
+      <div class="edu-item">
+        <div>
+          <h3>Bacharelado em Sistemas de Informação</h3>
+          <div class="edu-org">Centro Universitário CESMAC</div>
+        </div>
+        <div class="edu-when">Previsão: 1º sem. 2027</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <h3>Certificação Gestão Ágil 2.0 (120h)</h3>
+          <div class="edu-org">MindMaster</div>
+        </div>
+        <div class="edu-when">2024</div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="contact-box">
+        <h2>Vamos conversar</h2>
+        <p>Aberto a novas oportunidades em gestão de TI, projetos e sistemas de saúde.</p>
+        <div class="contact-links">
+          <a href="tel:+5582999920972">(82) 99992-0972</a>
+          <a href="mailto:allaph_anderson@hotmail.com">allaph_anderson@hotmail.com</a>
+          <a href="https://linkedin.com/in/allaphandersonn" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Allaph Andersonn — Maceió, AL · Atualizado em 2026
+</footer>
+
+</body>
+</html>
